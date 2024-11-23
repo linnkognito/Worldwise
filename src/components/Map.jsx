@@ -12,13 +12,14 @@ import {
 import styles from './Map.module.css';
 import { useEffect, useState } from 'react';
 import { useCities } from '../contexts/CitiesContext';
+import { useGeolocation } from '../hooks/useGeolocation';
 
 function Map() {
   const { cities } = useCities();
-
   const [mapPosition, setMapPosition] = useState([40, 0]);
-
   const [searchParams] = useSearchParams();
+  const {} = useGeolocation();
+
   const mapLat = searchParams.get('lat');
   const mapLng = searchParams.get('lng');
 
@@ -30,7 +31,6 @@ function Map() {
   );
 
   return (
-    // <div className={styles.mapContainer} onClick={() => navigate('form')}>
     <div className={styles.mapContainer}>
       <MapContainer
         center={mapPosition}

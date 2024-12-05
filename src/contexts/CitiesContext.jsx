@@ -1,9 +1,19 @@
+/* 
+Comments show code pre-refactoring 
+& has been kept for studying purposes. 
+*/
+
 import { createContext, useContext, useEffect, useReducer } from 'react';
 
 const BASE_URL = 'http://localhost:8000';
-
 const CitiesContext = createContext();
 
+const initialState = {
+  cities: [],
+  isLoading: false,
+  currentCity: {},
+  error: '',
+};
 function reducer(state, action) {
   switch (action.type) {
     case 'loading':
@@ -50,13 +60,6 @@ function reducer(state, action) {
       throw new Error('Unknown action type');
   }
 }
-
-const initialState = {
-  cities: [],
-  isLoading: false,
-  currentCity: {},
-  error: '',
-};
 
 function CitiesProvider({ children }) {
   const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(

@@ -1,8 +1,14 @@
 /* 
-📝 Comments show code pre-refactoring & has been kept for studying purposes. 
+📝 Comments show what the code looked like pre-refactoring & has been kept for studying purposes. 
 */
 
-import { createContext, useContext, useEffect, useReducer } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from 'react';
 
 const BASE_URL = 'http://localhost:8000';
 const CitiesContext = createContext();
@@ -93,25 +99,28 @@ function CitiesProvider({ children }) {
   }, []);
 
   // Get data
-  async function getCity(id) {
-    if (Number(id) === currentCity.id) return; // Avoid unnecessary API calls
+  const getCity = useCallback(
+    async function getCity(id) {
+      if (Number(id) === currentCity.id) return; // Avoid unnecessary API calls
 
-    dispatch({ type: 'loading' });
-    try {
-      // setIsLoading(true);
+      dispatch({ type: 'loading' });
+      try {
+        // setIsLoading(true);
 
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
 
-      dispatch({ type: 'city/loaded', payload: data });
-      // setCurrentCity(data);
-    } catch {
-      dispatch({
-        type: 'rejected',
-        payload: 'There was an error loading the city...',
-      });
-    }
-  }
+        dispatch({ type: 'city/loaded', payload: data });
+        // setCurrentCity(data);
+      } catch {
+        dispatch({
+          type: 'rejected',
+          payload: 'There was an error loading the city...',
+        });
+      }
+    },
+    [currentCity.id]
+  );
 
   // Send data
   async function createCity(newCity) {

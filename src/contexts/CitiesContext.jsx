@@ -1,6 +1,5 @@
 /* 
-Comments show code pre-refactoring 
-& has been kept for studying purposes. 
+📝 Comments show code pre-refactoring & has been kept for studying purposes. 
 */
 
 import { createContext, useContext, useEffect, useReducer } from 'react';
@@ -14,6 +13,7 @@ const initialState = {
   currentCity: {},
   error: '',
 };
+
 function reducer(state, action) {
   switch (action.type) {
     case 'loading':

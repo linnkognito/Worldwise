@@ -19,9 +19,10 @@ function reducer(state, action) {
   }
 }
 
-/* ⚠️ The FAKE_USER object is hardcoded here for learning and demonstration purposes ONLY.
-NEVER hardcode or expose real user credentials (e.g., email, password) in your code, especially in production environments. ⚠️
- */
+/* ⚠️ 
+The FAKE_USER object is hardcoded here for learning and demonstration purposes ONLY.
+NEVER hardcode or expose real user credentials (e.g., email, password) in your code, especially in production environments. 
+⚠️ */
 const FAKE_USER = {
   name: 'Jack',
   email: 'jack@example.com',

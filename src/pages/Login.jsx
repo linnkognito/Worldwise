@@ -6,7 +6,7 @@ import { useAuth } from '../contexts/FakeAuthContext';
 import Button from '../components/Button';
 
 export default function Login() {
-  // PRE-FILL FOR DEV PURPOSES
+  // Pre-filled for development
   const [email, setEmail] = useState('jack@example.com');
   const [password, setPassword] = useState('qwerty');
   const { login, isAuthenticated } = useAuth();
@@ -22,7 +22,7 @@ export default function Login() {
 
   useEffect(
     function () {
-      // Replace prevents logged in users to end up at the login page after already logged in.
+      // Replace prevents logged in users to end up at the login page once logged in.
       if (isAuthenticated) navigate('/app', { replace: true });
     },
     [navigate, isAuthenticated]
